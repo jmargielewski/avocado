@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const App = (): JSX.Element => {
-  const jsx = (
-    <div>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa nobis repudiandae distinctio,
-      natus libero ex! Doloribus est dolorem ratione perferendis, illum, ab a odio officiis commodi
-      voluptatem maiores ex vel?
-    </div>
-  );
-  return jsx;
-};
+class App extends Component {
+  state = {
+    number: 1,
+  };
+
+  render(): JSX.Element {
+    const { number } = this.state;
+    return <div>{number}</div>;
+  }
+}
 
 export default App;
