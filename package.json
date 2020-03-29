@@ -51,19 +51,17 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "tsc --noEmit && lint-staged"
     }
   },
   "lint-staged": {
     "*.tsx": [
       "eslint --fix",
-      "prettier --config .prettierrc --write",
-      "tsc -p . --noEmit"
+      "prettier --config .prettierrc --write"
     ],
     "*.ts": [
       "eslint --fix",
-      "prettier --config .prettierrc --write",
-      "tsc -p . --noEmit"
+      "prettier --config .prettierrc --write"
     ]
   }
 }
