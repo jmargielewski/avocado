@@ -10,9 +10,26 @@
   },
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "react-hooks", "jest", "prettier"],
-  "extends": ["airbnb-typescript", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+  "extends": [
+    "airbnb-typescript",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
   "parserOptions": {
     "project": "./tsconfig.json"
   },
-  "rules": {}
+  "rules": {
+    "import/no-extraneous-dependencies": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/state-in-constructor": 0,
+    "no-underscore-dangle": 0
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": ["error"]
+      }
+    }
+  ]
 }
