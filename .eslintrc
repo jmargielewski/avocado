@@ -1,0 +1,18 @@
+{
+  "env": {
+    "browser": true,
+    "jest/globals": true
+  },
+  "globals": {
+    "window": true,
+    "document": true,
+    "localStorage": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "react-hooks", "jest", "prettier"],
+  "extends": ["airbnb-typescript", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"],
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "rules": {}
+}
