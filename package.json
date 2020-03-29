@@ -57,11 +57,13 @@
   "lint-staged": {
     "*.tsx": [
       "eslint --fix",
-      "prettier --config .prettierrc --write"
+      "prettier --config .prettierrc --write",
+      "tsc -p . --noEmit"
     ],
     "*.ts": [
       "eslint --fix",
-      "prettier --config .prettierrc --write"
+      "prettier --config .prettierrc --write",
+      "tsc -p . --noEmit"
     ]
   }
 }
