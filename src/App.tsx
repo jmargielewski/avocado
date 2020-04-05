@@ -1,14 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { createStore, applyMiddleware } from 'redux';
+import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
+import { reducers } from './reducers';
+import Page from './pages/Page';
 
-class App extends Component {
-  state = {
-    number: 1,
-  };
+const store = createStore(reducers, applyMiddleware(thunk));
 
-  render(): JSX.Element {
-    const { number } = this.state;
-    return <div>{number}</div>;
-  }
-}
+const App = (): JSX.Element => {
+  return (
+    <Provider store={store}>
+      <Page />
+    </Provider>
+  );
+};
 
 export default App;
