@@ -1,20 +1,40 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Todo, fetchTodos, deleteTodo, DeleteTodoAction } from '../actions';
+import { Todo, fetchTodos, deleteTodo } from '../actions';
 import { StoreState } from '../reducers';
 
 interface PageProps {
   todos: Todo[];
-  fetchTodos(): Promise<void>;
-  deleteTodo(id: number): DeleteTodoAction;
+  fetchTodos: Function;
+  deleteTodo: typeof deleteTodo;
 }
 
-class Page extends Component<PageProps> {
-  state = {};
+interface PageState {
+  loading: boolean;
+}
+class Page extends Component<PageProps, PageState> {
+  constructor(props: PageProps) {
+    super(props);
+
+    this.state = { loading: false };
+  }
+
+  componentDidUpdate(prevProps: PageProps): void {
+    this.setLoading(prevProps);
+  }
+
+  setLoading = (prevProps: PageProps): void => {
+    const { todos } = this.props;
+
+    if (!prevProps.todos.length && todos.length) {
+      this.setState({ loading: false });
+    }
+  };
 
   onButtonClick = (): void => {
     const { fetchTodos } = this.props; // eslint-disable-line no-shadow
     fetchTodos();
+    this.setState({ loading: true });
   };
 
   onTodoClick = (id: number): void => {
@@ -31,11 +51,13 @@ class Page extends Component<PageProps> {
 
   render(): JSX.Element {
     const { todos } = this.props;
+    const { loading } = this.state;
     return (
       <div>
         <button type="button" onClick={this.onButtonClick}>
           Fetch
         </button>
+        {loading ? 'Loading...' : null}
         {todos.map((todo) => (
           <div key={todo.id}>
             {todo.title}
