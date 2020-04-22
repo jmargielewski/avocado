@@ -1,18 +1,18 @@
 import React from 'react';
-import { createStore, applyMiddleware } from 'redux';
-import { Provider } from 'react-redux';
-import thunk from 'redux-thunk';
-import { reducers } from './reducers';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import Root from './Root';
 import Page from './pages/Page';
+import MainTemplate from './templates/MainTemplate';
 
-const store = createStore(reducers, applyMiddleware(thunk));
-
-const App = (): JSX.Element => {
-  return (
-    <Provider store={store}>
-      <Page />
-    </Provider>
-  );
-};
+const App = (): JSX.Element => (
+  <Root>
+    <Router>
+      <MainTemplate>
+        <Page />
+      </MainTemplate>
+    </Router>
+  </Root>
+);
 
 export default App;
