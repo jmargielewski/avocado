@@ -1,4 +1,4 @@
-import { createGlobalStyle, css } from 'styled-components';
+import { createGlobalStyle, css, GlobalStyleComponent, DefaultTheme } from 'styled-components';
 import { StyleTheme } from './mainTheme';
 
 const respond = (breakpoints: StyleTheme['breakpoints']): string => {
@@ -34,8 +34,8 @@ const respond = (breakpoints: StyleTheme['breakpoints']): string => {
 	`;
 };
 
-const GlobalStyle = createGlobalStyle(
-  ({ theme }: { theme: StyleTheme }) => css`
+const GlobalStyle: GlobalStyleComponent<{ theme: StyleTheme }, DefaultTheme> = createGlobalStyle(
+  ({ theme }) => css`
     @import url('https://fonts.googleapis.com/css?family=Lato:100,300,600&display=swap');
     *,
     *::before,

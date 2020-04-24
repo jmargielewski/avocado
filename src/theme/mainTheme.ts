@@ -75,8 +75,9 @@ const fonts = {
 };
 
 const shadows = {
-  shadowDark: '0 2rem 6rem rgba(0, 0, 0, 0.3)',
-  shadowLight: '0 2rem 5rem rgba(0, 0, 0, .06)',
+  // shadowDark: '0 2rem 6rem rgba(0, 0, 0, 0.3)',
+  // shadowLight: '0 2rem 5rem rgba(0, 0, 0, .06)',
+  shadowLight: '0 10px 20px -10px rgba(0, 0, 0, 0.2)',
 };
 
 const wights = {
