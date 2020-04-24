@@ -52,15 +52,6 @@ const breakpoints = {
   xxl: '112.5em', // 1800px
 };
 
-const fontSize = {
-  xs: '1rem',
-  sm: '1.2rem',
-  md: '1.6rem',
-  lg: '2.1rem',
-  xl: '2.4rem',
-  xxl: '4rem',
-};
-
 const spaces = {
   xs: '.4rem',
   sm: '.8rem',
@@ -70,13 +61,27 @@ const spaces = {
   xxl: '3.2rem',
 };
 
+const fontSize = {
+  xs: '.8rem',
+  sm: '1.2rem',
+  md: '1.6rem',
+  lg: '2.4rem',
+  xl: '4rem',
+  xxl: '6rem',
+};
+
+const fonts = {
+  main: 'Lato',
+};
+
 const shadows = {
   shadowDark: '0 2rem 6rem rgba(0, 0, 0, 0.3)',
   shadowLight: '0 2rem 5rem rgba(0, 0, 0, .06)',
 };
 
 const wights = {
-  light: 300,
+  light: 100,
+  normal: 300,
   bold: 600,
 };
 
@@ -85,6 +90,7 @@ export interface StyleTheme {
   secondaryColors: { [key in keyof typeof secondaryColors]: string };
   breakpoints: { [key in keyof typeof breakpoints]: string };
   fontSize: { [key in keyof typeof fontSize]: string };
+  fonts: { [key in keyof typeof fonts]: string };
   spaces: { [key in keyof typeof spaces]: string };
   shadows: { [key in keyof typeof shadows]: string };
   wights: { [key in keyof typeof wights]: number };
@@ -95,6 +101,7 @@ export const theme: StyleTheme = {
   secondaryColors,
   breakpoints,
   fontSize,
+  fonts,
   spaces,
   shadows,
   wights,
