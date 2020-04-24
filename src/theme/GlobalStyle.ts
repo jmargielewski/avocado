@@ -59,7 +59,7 @@ const GlobalStyle = createGlobalStyle(
       font-size: ${theme.fontSize.md};
       font-weight: ${theme.wights.normal};
       font-family: ${theme.fonts.main};
-      color: ${theme.spaces.xl};
+      color: ${theme.colors.grey60};
       position: relative;
     }
 
