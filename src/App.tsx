@@ -38,7 +38,7 @@ const App: FunctionComponent = (): JSX.Element => (
         <Switch>
           <PageRoute exact path={routes.login} component={LoginPage} layout={AuthTemplate} />
           <PageRoute exact path={routes.register} component={RegisterPage} layout={AuthTemplate} />
-          <Route path="/" component={Page} />
+          <Route path={routes.home} component={Page} />
         </Switch>
       </MainTemplate>
     </Router>

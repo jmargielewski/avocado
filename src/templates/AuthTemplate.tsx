@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const StyledWrapper = styled.div`
   width: 100%;
   height: 100vh;
-  /* background-color: ${({ theme }): string => theme.notes}; */
+  background-color: ${({ theme }): string => theme.Colors.coral};
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -14,7 +14,7 @@ const StyledWrapper = styled.div`
 const StyledAuthCard = styled.div`
   width: 40rem;
   height: 40rem;
-  /* background-color: white; */
+  background-color: ${({ theme }): string => theme.Colors.white};
   border-radius: 1rem;
   box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.2);
   display: flex;

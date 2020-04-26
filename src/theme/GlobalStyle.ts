@@ -1,7 +1,6 @@
-import { createGlobalStyle, css, GlobalStyleComponent, DefaultTheme } from 'styled-components';
-import { StyleTheme } from './mainTheme';
+import { createGlobalStyle, css, DefaultTheme } from 'styled-components';
 
-const respond = (breakpoints: StyleTheme['breakpoints']): string => {
+const respond = (breakpoints: DefaultTheme['Breakpoints']): string => {
   return `
     @media (max-width: ${breakpoints.xs}) {
       font-size: 43.75%;
@@ -34,7 +33,7 @@ const respond = (breakpoints: StyleTheme['breakpoints']): string => {
 	`;
 };
 
-const GlobalStyle: GlobalStyleComponent<{ theme: StyleTheme }, DefaultTheme> = createGlobalStyle(
+const GlobalStyle = createGlobalStyle(
   ({ theme }) => css`
     @import url('https://fonts.googleapis.com/css?family=Lato:100,300,600&display=swap');
     *,
@@ -49,17 +48,17 @@ const GlobalStyle: GlobalStyleComponent<{ theme: StyleTheme }, DefaultTheme> = c
       box-sizing: border-box;
       font-size: 62.5%;
 
-      ${respond(theme.breakpoints)}
+      ${respond(theme.Breakpoints)}
     }
 
     body {
       margin: 0;
       padding: 0;
       min-height: 100vh;
-      font-size: ${theme.fontSize.md};
-      font-weight: ${theme.wights.normal};
-      font-family: ${theme.fonts.main};
-      color: ${theme.colors.grey60};
+      font-size: ${theme.FontSize.md};
+      font-weight: ${theme.Wights.normal};
+      font-family: ${theme.Fonts.main};
+      color: ${theme.Colors.grey60};
       position: relative;
     }
 
@@ -69,50 +68,50 @@ const GlobalStyle: GlobalStyleComponent<{ theme: StyleTheme }, DefaultTheme> = c
     h4,
     h5,
     h6 {
-      color: ${theme.colors.grey60};
-      font-weight: ${theme.wights.bold};
+      color: ${theme.Colors.grey60};
+      font-weight: ${theme.Wights.bold};
     }
 
     h1 {
-      font-size: ${theme.fontSize.xxl};
+      font-size: ${theme.FontSize.xxl};
       margin: 2rem 0;
     }
 
     h2 {
-      font-size: ${theme.fontSize.xl};
+      font-size: ${theme.FontSize.xl};
       margin: 1.8rem 0;
     }
 
     h3 {
-      font-size: ${theme.fontSize.lg};
+      font-size: ${theme.FontSize.lg};
       margin: 1.6rem 0;
     }
 
     h4 {
-      font-size: ${theme.fontSize.md};
+      font-size: ${theme.FontSize.md};
       margin: 1.4rem 0;
     }
 
     h5 {
-      font-size: ${theme.fontSize.sm};
+      font-size: ${theme.FontSize.sm};
       margin: 1rem 0;
     }
 
     h6 {
-      font-size: ${theme.fontSize.xs};
+      font-size: ${theme.FontSize.xs};
       margin: 0.6rem 0;
     }
 
     p {
-      color: ${theme.colors.grey60};
-      font-size: ${theme.fontSize.md};
-      font-weight: ${theme.wights.normal};
+      color: ${theme.Colors.grey60};
+      font-size: ${theme.FontSize.md};
+      font-weight: ${theme.Wights.normal};
       line-height: 1.5em;
       margin: 1rem 0;
     }
 
     a {
-      color: ${theme.colors.blue};
+      color: ${theme.Colors.blue};
       text-decoration: none;
     }
 
