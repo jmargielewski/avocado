@@ -45,11 +45,11 @@ enum SecondaryColors {
 
 enum Breakpoints {
   xs = '31.25em', // 500px
-  sm = '37.5em', // 600px
-  md = '56.25em', // 900px
-  lg = '68.75em', // 1100px
-  xl = '75em', // 1200 / 16 = 75
-  xxl = '112.5em', // 1800px
+  sm = '37.5em', // 600px  mobile
+  md = '56.25em', // 900px tablet
+  lg = '68.75em', // 1100px small desktop
+  xl = '75em', // 1200 / 16 = 75 desktop
+  xxl = '112.5em', // 1800px large desktop
 }
 
 enum Spaces {
@@ -86,6 +86,17 @@ enum Wights {
   bold = 600,
 }
 
+const customMediaQuery = (maxWidth: string): string => `@media (max-width: ${maxWidth})`;
+
+const media = {
+  smallMobile: customMediaQuery(Breakpoints.xs),
+  mobile: customMediaQuery(Breakpoints.sm),
+  tablet: customMediaQuery(Breakpoints.md),
+  smallDesktop: customMediaQuery(Breakpoints.lg),
+  desktop: customMediaQuery(Breakpoints.xl),
+  largeDesktop: customMediaQuery(Breakpoints.xxl),
+};
+
 export const theme = {
   Colors,
   SecondaryColors,
@@ -95,6 +106,7 @@ export const theme = {
   Spaces,
   Shadows,
   Wights,
+  media,
 };
 
 declare module 'styled-components' {
