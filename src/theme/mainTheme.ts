@@ -82,7 +82,7 @@ enum Shadows {
 
 enum Wights {
   light = 100,
-  normal = 300,
+  normal = 400,
   bold = 600,
 }
 
