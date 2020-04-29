@@ -14,7 +14,7 @@ const respond = (breakpoints: DefaultTheme['Breakpoints']): string => {
       font-size: 56.25%;
       // 1rem = 9px, 9/16 = 50%
     }
-    @media (min-width: ${breakpoints.md}) and (max-width: ${breakpoints.lg}) {
+    @media (min-width: ${breakpoints.md}) and (max-width: ${breakpoints.xxl}) {
       font-size: 62.5%;
       // 1rem = 10px; 10px/16px = 62.5%
     }
@@ -35,7 +35,7 @@ const respond = (breakpoints: DefaultTheme['Breakpoints']): string => {
 
 const GlobalStyle = createGlobalStyle(
   ({ theme }) => css`
-    @import url('https://fonts.googleapis.com/css?family=Lato:100,300,600&display=swap');
+    @import url('https://fonts.googleapis.com/css?family=Lato:100,400,600&display=swap');
     *,
     *::before,
     *::after {
@@ -60,6 +60,10 @@ const GlobalStyle = createGlobalStyle(
       font-family: ${theme.Fonts.main};
       color: ${theme.Colors.grey60};
       position: relative;
+    }
+
+    #root {
+      height: 100vh;
     }
 
     h1,

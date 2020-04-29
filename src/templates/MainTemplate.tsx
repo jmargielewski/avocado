@@ -12,12 +12,12 @@ class MainTemplate extends Component {
     const { pageType } = this.state;
 
     return (
-      <div className="Root">
+      <>
         <ThemeProvider theme={theme}>
           <GlobalStyle theme={theme} />
           {children}
         </ThemeProvider>
-      </div>
+      </>
     );
   }
 }
