@@ -35,7 +35,6 @@ const respond = (breakpoints: DefaultTheme['Breakpoints']): string => {
 
 const GlobalStyle = createGlobalStyle(
   ({ theme }) => css`
-    @import url('https://fonts.googleapis.com/css?family=Lato:100,400,600&display=swap');
     *,
     *::before,
     *::after {
