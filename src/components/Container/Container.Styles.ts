@@ -28,15 +28,18 @@ const respond = (breakpoints: DefaultTheme['Breakpoints']): string => {
 };
 
 const fluid = (): string => 'width: 100%!important;';
+const flex = (): string => 'display: flex; justify-content: center; align-items: center';
 
 const Container = styled.div`
   max-width: 100%;
+  min-height: 100%;
   margin: 0 auto;
   border: 1px solid grey;
 
   ${({ theme }): string => respond(theme.Breakpoints)}
 
   ${(props: ContainerProps): string => (props.fluid ? fluid() : '')}
+  ${(props: ContainerProps): string => (props.flex ? flex() : '')}
 `;
 
 export default {
