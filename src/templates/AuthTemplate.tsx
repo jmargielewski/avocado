@@ -1,15 +1,6 @@
 import React, { FunctionComponent } from 'react';
 import styled from 'styled-components';
-
-const StyledWrapper = styled.div`
-  width: 100%;
-  height: 100vh;
-  background-color: ${({ theme }): string => theme.Colors.coral};
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
+import Container from '../components/Container';
 
 const StyledAuthCard = styled.div`
   width: 40rem;
@@ -24,9 +15,9 @@ const StyledAuthCard = styled.div`
 `;
 
 const AuthTemplate: FunctionComponent = ({ children }): JSX.Element => (
-  <StyledWrapper>
+  <Container fluid flex>
     <StyledAuthCard>{children}</StyledAuthCard>
-  </StyledWrapper>
+  </Container>
 );
 
 export type AuthTemplateType = typeof AuthTemplate;
