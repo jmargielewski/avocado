@@ -4,8 +4,8 @@ enum configDev {
 }
 
 enum configProd {
-  API = 'https://caramba-backend.herokuapp.com/',
-  BASE_URL = 'https://avocado-pro.herokuapp.com/',
+  API = 'https://caramba-backend.herokuapp.com',
+  BASE_URL = 'https://avocado-pro.herokuapp.com',
 }
 
 // prettier-ignore
