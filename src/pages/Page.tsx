@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Todo, fetchTodos, deleteTodo } from '../actions';
 import { StoreState } from '../reducers';
+import Grid from '../components/Grid';
+import Paragraph from '../components/Paragraph/index';
 
 interface PageProps {
   todos: Todo[];
@@ -54,6 +56,26 @@ class Page extends Component<PageProps, PageState> {
     const { loading } = this.state;
     return (
       <div>
+        <Grid>
+          <Grid.Row>
+            <Grid.Column size={4} floatedLeft>
+              1
+            </Grid.Column>
+            <Grid.Column size={4} floatedRight>
+              <Paragraph light>
+                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nobis recusandae pariatur
+                minima voluptate. Laboriosam temporibus quod repellat, incidunt vitae voluptas animi
+                aperiam autem minus cupiditate velit placeat earum iste perspiciatis?
+              </Paragraph>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Column size={2}>2</Grid.Column>
+          <Grid.Column size={4}>4</Grid.Column>
+          <Grid.Column size={1}>1</Grid.Column>
+          <Grid.Column size={1}>1</Grid.Column>
+          <Grid.Column size={3}>3</Grid.Column>
+          <Grid.Column size={1}>1</Grid.Column>
+        </Grid>
         <button type="button" onClick={this.onButtonClick}>
           Fetch
         </button>
