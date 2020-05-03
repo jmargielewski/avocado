@@ -129,6 +129,11 @@ const GlobalStyle = createGlobalStyle(
       max-width: 100%;
       height: auto;
     }
+
+    input {
+      font-size: 100%;
+      line-height: 1.15;
+    }
   `,
 );
 

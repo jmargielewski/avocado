@@ -1,3 +1,6 @@
+import animations from './animations';
+import mixins from './mixins';
+
 enum Colors {
   blue = '#2179ee',
   green = '#00cc9a',
@@ -8,17 +11,17 @@ enum Colors {
   black = '#000000',
 
   grey10 = '#f3f4f8',
-  grey20 = '#e1e5eb',
+  grey20 = '#e1e5eb', // loader, input border
   grey30 = '#c2c6cc',
   grey40 = '#9ea2a8',
-  grey50 = '#686c73',
-  grey60 = '#30363d',
+  grey50 = '#686c73', // loader
+  grey60 = '#30363d', // input font
 }
 
 enum SecondaryColors {
   blue10 = '#ade7ff',
   blue20 = '#61bcff',
-  blue30 = '#2179ee',
+  blue30 = '#2179ee', // input border focus
   blue40 = '#1f4ab4',
   blue50 = '#1d2064',
   green10 = '#b5ffcb',
@@ -71,13 +74,18 @@ enum FontSize {
 }
 
 enum Fonts {
-  main = 'Lato',
+  main = 'Lato, "Helvetica Neue", Arial, Helvetica, sans-serif',
 }
 
 enum Shadows {
   // shadowDark = '0 2rem 6rem rgba(0, 0, 0, 0.3)',
   // shadowLight = '0 2rem 5rem rgba(0, 0, 0, .06)',
   shadowLight = '0 10px 20px -10px rgba(0, 0, 0, 0.2)',
+}
+
+enum Radius {
+  normal = '0.3rem',
+  round = '500rem',
 }
 
 enum Wights {
@@ -105,8 +113,11 @@ export const theme = {
   Fonts,
   Spaces,
   Shadows,
+  Radius,
   Wights,
   media,
+  mixins,
+  animations,
 };
 
 declare module 'styled-components' {
