@@ -5,7 +5,7 @@ import axios from 'axios';
 import catchError, { ErrorMsg } from '../../utils/catchErrors';
 import { config } from '../../utils/config';
 
-import Paragraph from '../../components/Paragraph';
+import Paragraph from '../../components/Elements/Paragraph';
 
 const INITIAL_USER: User = {
   email: '',

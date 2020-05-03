@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Todo, fetchTodos, deleteTodo } from '../actions';
 import { StoreState } from '../reducers';
 import Grid from '../components/Grid';
-import Paragraph from '../components/Paragraph/index';
+import Paragraph from '../components/Elements/Paragraph/index';
 
 interface PageProps {
   todos: Todo[];
