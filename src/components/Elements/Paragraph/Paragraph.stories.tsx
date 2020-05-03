@@ -3,7 +3,7 @@ import Paragraph from './index';
 
 export default {
   component: Paragraph,
-  title: 'Atoms/Paragraph',
+  title: 'Elements/Paragraph',
 };
 
 export const light = (): JSX.Element => (
