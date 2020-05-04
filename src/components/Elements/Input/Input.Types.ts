@@ -3,7 +3,7 @@ import { FlattenInterpolation, ThemeProps, DefaultTheme } from 'styled-component
 export type InterpolationWithTheme = FlattenInterpolation<ThemeProps<DefaultTheme>>;
 
 export interface InputProps {
-  focus?: boolean;
-  loading?: boolean;
   icon?: string;
+  className?: string;
+  loading?: boolean;
 }

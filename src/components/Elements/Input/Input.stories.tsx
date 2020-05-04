@@ -1,11 +1,11 @@
 import React from 'react';
-import Input from './';
+import Input from '.';
 
 export default {
   component: Input,
   title: 'Elements/Input',
 };
 
-export const standard = () => <Input />;
-export const focus = () => <Input focus />;
-export const loading = () => <Input loading icon="search" />;
+export const standard = (): JSX.Element => <Input />;
+export const loading = (): JSX.Element => <Input loading icon="search" />;
+export const error = (): JSX.Element => <Input className="error" />;

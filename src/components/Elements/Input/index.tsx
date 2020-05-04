@@ -3,19 +3,19 @@ import Styled from './Input.Styles';
 import { InputProps } from './Input.Types';
 import Icon from '../Icon';
 
-const Input: FunctionComponent<InputProps> = ({ focus, loading, icon }): JSX.Element => {
+const Input: FunctionComponent<InputProps> = ({ loading, icon, className }): JSX.Element => {
   return (
-    <Styled.InputWrapper focus={focus} loading={loading} icon={icon}>
-      <Styled.Input type="text" placeholder="Search.." />
+    <Styled.InputWrapper loading={loading} icon={icon}>
+      <Styled.Input type="text" placeholder="Search.." className={className} />
       {!!icon && <Icon icon={icon} />}
     </Styled.InputWrapper>
   );
 };
 
 Input.defaultProps = {
-  focus: false,
-  loading: false,
   icon: '',
+  className: '',
+  loading: false,
 };
 
 export default Input;

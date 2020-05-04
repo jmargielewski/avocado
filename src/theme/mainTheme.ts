@@ -44,6 +44,10 @@ enum SecondaryColors {
   gold30 = '#f0b95b',
   gold40 = '#e5a229',
   gold50 = '#6a4a24',
+  red10 = '#fff6f6',
+  red20 = '#e0b4b4',
+  red30 = '#e7bdbc',
+  red50 = '#9f3a38',
 }
 
 enum Breakpoints {
