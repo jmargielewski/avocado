@@ -34,7 +34,7 @@ const InputWrapper = styled.div`
   position: relative;
   font-weight: ${({ theme }): number => theme.Wights.light};
   color: ${({ theme }): string => theme.Colors.grey60};
-  display: inline-flex;
+  display: flex;
 
   ${({ icon }: InputProps): FlattenSimpleInterpolation | false =>
     !!icon &&
