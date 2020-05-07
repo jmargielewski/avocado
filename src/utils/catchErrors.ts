@@ -20,7 +20,7 @@ function catchErrors(error: any, displayError: (errors: ErrorMsg[]) => void): vo
     }
   } else if (error.request) {
     // the request was made, but no response was received
-    errors = [{ message: error.request }];
+    errors = [{ message: 'The request was made, but no response was received' }];
     console.error('Error request', errors);
   } else {
     // something else happened in making the request that
