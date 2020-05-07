@@ -12,6 +12,7 @@ const StyledAuthCard = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 4.5rem 6.5rem;
 `;
 
 const AuthTemplate: FunctionComponent = ({ children }): JSX.Element => (
