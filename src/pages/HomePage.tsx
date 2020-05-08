@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Todo, fetchTodos, deleteTodo } from '../actions';
 import { StoreState } from '../reducers';
 import Grid from '../components/Grid';
@@ -14,7 +15,7 @@ interface PageProps {
 interface PageState {
   loading: boolean;
 }
-class Page extends Component<PageProps, PageState> {
+class HomePage extends Component<PageProps, PageState> {
   constructor(props: PageProps) {
     super(props);
 
@@ -58,6 +59,12 @@ class Page extends Component<PageProps, PageState> {
       <div>
         <Grid>
           <Grid.Row>
+            <Grid.Column size={1} floatedRight>
+              <Link to="/login">Sign in</Link>
+              <Link to="/register">Sign up</Link>
+            </Grid.Column>
+          </Grid.Row>
+          <Grid.Row>
             <Grid.Column size={4} floatedLeft>
               1
             </Grid.Column>
@@ -97,4 +104,6 @@ const mapStateToProps = ({ todos }: StoreState): { todos: Todo[] } => ({
   todos,
 });
 
-export default connect(mapStateToProps, { fetchTodos, deleteTodo })(Page);
+export type HomePageType = typeof HomePage;
+
+export default connect(mapStateToProps, { fetchTodos, deleteTodo })(HomePage);
