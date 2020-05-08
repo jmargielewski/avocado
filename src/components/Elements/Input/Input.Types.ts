@@ -8,6 +8,7 @@ export interface InputProps {
   type?: string;
   name?: string;
   value?: string;
+  onBlur?(event: ChangeEvent<HTMLInputElement>): void;
   onChange?(event: ChangeEvent<HTMLInputElement>): void;
   placeholder?: string;
   icon?: string;

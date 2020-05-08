@@ -10,6 +10,7 @@ const Input: FunctionComponent<InputProps> = ({
   name,
   value,
   onChange,
+  onBlur,
   placeholder,
   loading,
   icon,
@@ -24,6 +25,8 @@ const Input: FunctionComponent<InputProps> = ({
         name={name}
         value={value}
         onChange={onChange}
+        onBlur={onBlur}
+        autoComplete="none"
       />
       {!!icon && <Icon icon={icon} />}
     </Styled.InputWrapper>
