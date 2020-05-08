@@ -1,119 +1,125 @@
-import React, { FunctionComponent, useState, ChangeEvent, FormEvent } from 'react';
-import { RouteComponentProps, Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { FunctionComponent, useState } from 'react';
+import { RouteComponentProps, Link, Redirect } from 'react-router-dom';
 
-import catchError, { ErrorMsg } from '../../utils/catchErrors';
+import useForm, { StateSchema, ValidationStateSchema } from './useForm';
+
 import { config } from '../../utils/config';
+import catchError, { ErrorMsg } from '../../utils/catchErrors';
+
+import axios from '../../services';
+import { routes } from '../../routes';
+import { setToken, getToken } from '../../localStorage/token';
 
 import Paragraph from '../../components/Elements/Paragraph';
-
-const INITIAL_USER: User = {
-  email: '',
-  password: '',
-};
+import Input from '../../components/Elements/Input';
 
 const INITIAL_ERROR: ErrorMsg[] = [];
 
-interface User {
-  email: string;
-  password: string;
-}
-
-const LoginPage: FunctionComponent<RouteComponentProps> = (props): JSX.Element => {
-  const [user, setUser] = useState(INITIAL_USER);
-  const [errors, setErrors] = useState(INITIAL_ERROR);
+const LoginPage: FunctionComponent<RouteComponentProps> = (): JSX.Element => {
   const [loading, setLoading] = useState(false);
-  const [disabled, setDisabled] = useState(true);
+  const [apiErrors, setApiErrors] = useState(INITIAL_ERROR);
 
-  const isFormValid = ({ email, password }: User): boolean => !!email && !!password;
-  // const isFormValid = (): boolean => Object.values(user).every((el: string) => Boolean(el));
+  // Define your state schema
+  const userSchema: StateSchema = {
+    email: { value: '', error: '' },
+    password: { value: '', error: '' },
+  };
 
-  React.useEffect(() => {
-    if (isFormValid(user)) {
-      setDisabled(false);
-    } else {
-      setDisabled(true);
+  // Define your validationStateSchema
+  // Note: validationStateSchema and stateSchema property
+  // should be the same in-order validation works!
+  const validationUserSchema: ValidationStateSchema = {
+    email: {
+      required: true,
+      validator: {
+        regEx: /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/, // eslint-disable-line no-useless-escape,
+        error: 'Invalid email format.',
+      },
+    },
+    password: {
+      required: true,
+      validator: {
+        regEx: /^(?=.{8,})/,
+        error: 'Password must be eight characters or longer',
+      },
+    },
+  };
+
+  async function onSubmitForm(state: StateSchema): Promise<void> {
+    try {
+      setLoading(true);
+      setApiErrors([]);
+
+      const payload = { email: state.email.value, password: state.password.value };
+      const response = await axios.post<{ token: string }>('/auth/signin', payload);
+
+      setToken(response.data.token);
+    } catch (error) {
+      catchError(error, setApiErrors);
+    } finally {
+      setLoading(false);
     }
-  }, [user]);
-
-  function handleChange(event: ChangeEvent<HTMLInputElement>): void {
-    const { name, value } = event.target;
-
-    setUser((prevState) => ({ ...prevState, [name]: value }));
   }
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>): Promise<void> {
-    event.preventDefault();
+  const { state, handleOnChange, handleOnSubmit, handleOnBlur, disable } = useForm(
+    userSchema,
+    validationUserSchema,
+    onSubmitForm,
+  );
 
-    if (isFormValid(user)) {
-      try {
-        setLoading(true);
-        setErrors([]);
-        const url = `${config.API}/auth/signin`;
-        const payload = { ...user };
-        const response = await axios.post(url, payload);
-        console.log('response', response);
-        // handleLogin(response.data);
-      } catch (error) {
-        catchError(error, setErrors);
-      } finally {
-        setLoading(false);
-      }
-    }
-  }
+  const handleInputError = (error: string): string => (error ? 'error' : '');
 
-  const handleInputError = (errs: ErrorMsg[], inputName: string): string =>
-    errs.some((err) => err.message.toLowerCase().includes(inputName)) ? 'error' : '';
+  const displayErrors = (error: ErrorMsg[] | string): JSX.Element[] => {
+    if (typeof error === 'string') return [<p key={error}>{error}</p>];
 
-  const displayErrors = (errs: ErrorMsg[]): JSX.Element[] =>
-    errs.map(({ message }) => <p key={message}>{message}</p>);
+    return error.map(({ message }) => <p key={message}>{message}</p>);
+  };
 
-  const {
-    match: { path },
-  } = props;
+  if (getToken()) return <Redirect to={routes.dashboard} />;
 
   return (
     <div>
-      <h2>{path}</h2>
-      <form onSubmit={handleSubmit}>
+      <h2>Login</h2>
+      <form onSubmit={handleOnSubmit} autoComplete="off">
         <div className="field">
           <label htmlFor="email">
             Email
-            <input
+            <Input
               id="email"
               type="email"
               name="email"
-              value={user.email}
-              onChange={handleChange}
-              className={handleInputError(errors, 'email')}
+              placeholder="Email"
+              value={state.email.value}
+              onChange={handleOnChange}
+              onBlur={handleOnBlur}
+              className={handleInputError(state.email.error)}
             />
+            {displayErrors(state.email.error)}
           </label>
         </div>
 
         <div className="field">
           <label htmlFor="password">
             Password
-            <input
+            <Input
               id="password"
-              type="passport"
+              type="password"
               name="password"
-              value={user.password}
-              onChange={handleChange}
-              className={handleInputError(errors, 'password')}
+              placeholder="Password"
+              value={state.password.value}
+              onChange={handleOnChange}
+              onBlur={handleOnBlur}
+              className={handleInputError(state.password.error)}
             />
+            {displayErrors(state.email.error)}
           </label>
         </div>
-
-        <button onClick={(): void => {}} type="submit" disabled={disabled || loading}>
-          Login
-        </button>
+        <p>
+          <a href={`${config.API}/auth/google`}>Login with google</a>
+        </p>
+        <input type="submit" name="submit" disabled={loading || disable} />
+        {displayErrors(apiErrors)}
       </form>
-      {errors.length > 0 && (
-        <div>
-          Error
-          {displayErrors(errors)}
-        </div>
-      )}
       <Paragraph>
         Do not have an account? Register
         <Link to="/register"> here.</Link>
