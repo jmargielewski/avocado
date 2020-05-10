@@ -3,7 +3,6 @@ import { RouteComponentProps, Link, Redirect } from 'react-router-dom';
 
 import useForm, { StateSchema, ValidationStateSchema } from './useForm';
 
-import { config } from '../../utils/config';
 import catchError, { ErrorMsg } from '../../utils/catchErrors';
 
 import axios from '../../services';
@@ -115,7 +114,7 @@ const LoginPage: FunctionComponent<RouteComponentProps> = (): JSX.Element => {
           </label>
         </div>
         <p>
-          <a href={`${config.API}/auth/google`}>Login with google</a>
+          <a href="/auth/google">Login with google</a>
         </p>
         <input type="submit" name="submit" disabled={loading || disable} />
         {displayErrors(apiErrors)}

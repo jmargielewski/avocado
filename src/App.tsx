@@ -12,7 +12,7 @@ import DashboardPage from './pages/Dashboard';
 import LoginPage from './pages/Auth/LoginPage';
 import RegisterPage from './pages/Auth/RegisterPage';
 
-import { getToken } from './localStorage/token';
+import { getToken, setToken } from './localStorage/token';
 
 import {
   routes,
@@ -38,11 +38,21 @@ const PageRoute: FunctionComponent<PageRouteProps> = ({
 }): JSX.Element => (
   <Route
     {...rest}
-    render={(props): JSX.Element => (
-      <Layout>
-        <Component {...props} />
-      </Layout>
-    )}
+    render={(props): JSX.Element => {
+      const { search } = props.location;
+      const isToken = search.includes('token');
+
+      if (isToken) {
+        const token = search.split('=')[1];
+        setToken(token);
+      }
+
+      return (
+        <Layout>
+          <Component {...props} />
+        </Layout>
+      );
+    }}
   />
 );
 
