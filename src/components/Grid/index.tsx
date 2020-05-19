@@ -1,15 +1,11 @@
-import React, { Component } from 'react';
+import React, { ReactChild } from 'react';
 import Styled from './Grid.Styles';
 
-class Grid extends Component {
-  static Column = Styled.Column;
+const Grid = ({ children }: { children: ReactChild[] }): JSX.Element => (
+  <Styled.StyledGrid>{children}</Styled.StyledGrid>
+);
 
-  static Row = Styled.Row;
-
-  public render(): JSX.Element {
-    const { children } = this.props;
-    return <Styled.StyledGrid>{children}</Styled.StyledGrid>;
-  }
-}
+Grid.Row = Styled.Row;
+Grid.Column = Styled.Column;
 
 export default Grid;
